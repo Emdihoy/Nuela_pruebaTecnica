@@ -12,11 +12,69 @@ api = Blueprint('api', __name__)
 CORS(api)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+@api.route('/asignaturas', methods=['GET'])
+def get_user():
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+    todas_asignaturas = Asignaturas.query.all()
+    results= list( map( lambda asignaturas:asignaturas.serialize(), todas_asignaturas ))
+  
+    return jsonify( results), 200
 
-    return jsonify(response_body), 200
+@api.route('/tipo', methods=['GET'])
+def get_tipo():
+
+    todos_tipo = Tipo.query.all()
+    results= list( map( lambda tipo:tipo.serialize(), todos_tipo ))
+  
+    return jsonify( results), 200
+
+@api.route('/curso', methods=['GET'])
+def get_curso():
+
+    todos_curso = Curso.query.all()
+    results= list( map( lambda curso:curso.serialize(), todos_curso ))
+  
+    return jsonify( results), 200
+
+@api.route('/grupo', methods=['GET'])
+def get_grupo():
+
+    todos_grupo = Grupo.query.all()
+    results= list( map( lambda grupo:grupo.serialize(), todos_grupo ))
+  
+    return jsonify( results), 200
+
+@api.route('/horas', methods=['GET'])
+def get_horas():
+
+    todos_horas = Horas.query.all()
+    results= list( map( lambda horas:horas.serialize(), todos_horas ))
+  
+    return jsonify( results), 200
+
+@api.route('/espacio', methods=['GET'])
+def get_espacio():
+
+    todos_espacios = Espacio.query.all()
+    results= list( map( lambda espacio:espacio.serialize(), todos_espacios ))
+  
+    return jsonify( results), 200
+
+@api.route('/cuadrante', methods=['POST'])
+def post_linea():
+    request_body_fila = request.get_json()
+
+    nueva_fila = Cuadrante(    
+        asignatura=request_body_fila["asignatura"],
+        tipo=request_body_fila["tipo"],
+        curso=request_body_fila["curso"],
+        grupo=request_body_fila["grupo"],
+        horas=request_body_fila["horas"],
+        espacio=request_body_fila["espacio"]
+            )
+
+    db.session.add(nueva_fila)
+    db.session.commit()
+  
+    return jsonify(request_body_fila), 200
+

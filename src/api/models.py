@@ -66,7 +66,7 @@ class Grupo(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "grupo": self.grupo
+            "grupo": self.grupo_escolar
         }
 class Horas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -79,7 +79,7 @@ class Horas(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "horas": self.horas
+            "horas": self.horas_lectivas
         }
 class Espacio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -92,7 +92,7 @@ class Espacio(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "espacio": self.espacio
+            "espacio": self.espacio_escolar
         }
 class Cuadrante(db.Model):
     id = db.Column(db.Integer, primary_key=True)
