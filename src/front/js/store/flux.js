@@ -6,7 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			curso:[],
 			grupo:[],
 			horas:[],
-			espacio:[]
+			espacio:[],
+			cuadrante:[],
 		},
 		actions: {
 			obtenerAsignatura: () => {
@@ -85,6 +86,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 						{
 							console.log(data);
 							setStore({ espacio: data })
+						}
+			)},
+			obtenerCuadrante:() => {
+				const requestOptions = {
+					method: 'GET',
+					headers: {"content-type": "application/json"},						
+				};					
+				fetch(process.env.BACKEND_URL + "api/cuadrante", requestOptions)
+				.then(response => response.json())
+				.then(data => 
+						{
+							console.log(data);
+							setStore({ cuadrante: data })
 						}
 			)},
 		}

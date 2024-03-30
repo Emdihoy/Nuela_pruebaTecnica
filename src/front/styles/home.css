@@ -1,7 +1,132 @@
-/*
-    home.css: This website contains selectors only used in home.css
+.main{
+    height: 100%;
+}
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+.sidePanel{
+    padding: 48px 32px 32px 48px;
+}
+
+.sidePanelButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 8px;
+    gap: 12px;
+    width: 224px;
+    height: 36px;
+    border-radius: 8px;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.bodyPanel{
+    background-color: #eeeaea63;
+    padding: 48px 32px 32px 48px;
+}
+
+.title{
+    margin: 10px;
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    gap: 8px;
+    width: 239px;
+    height: 48px;
+    background: #efeeee;
+    border-radius: 10px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 30px;
+}
+
+.statsContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    width: 1061px;
+    height: 105px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.stats{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    width: 343px;
+    height: 105px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    font-size: small;
+}
+
+.devider{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    width: 1061px;
+    height: 1px;
+    background: #ECECEC;
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+}
+
+.horasTipoContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+    width: 1061px;
+    height: 40px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.horasTipoButton{
+    display: inline-flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 15px;
+    width: fit-content;
+    height: 40px;
+}
+
+.añadirAsignatura {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    gap: 8px;
+    width: 239px;
+    height: 48px;
+    background: #efeeee;
+    border-radius: 10px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 30px;
+    background-color: #635BFF;
+    color: white;
+}

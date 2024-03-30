@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { Cuadrante } from "../pages/cuadrante";
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -7,14 +8,90 @@ export const Home = () => {
 
 
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<button onClick={()=>actions.obtenerAsignatura()}> Obtener Asignatura</button>
-			<button onClick={()=>actions.obtenerTipo()}> Obtener tipo</button>
-			<button onClick={()=>actions.obtenerCurso()}> Obtener curso</button>
-			<button onClick={()=>actions.obtenerGrupo()}> Obtener grupo</button>
-			<button onClick={()=>actions.obtenerHoras()}> Obtener horas</button>
-			<button onClick={()=>actions.obtenerEspacio()}> Obtener espacio</button>
-		</div>
+		<>
+			<div className="main row">
+				<div className="sidePanel col-2" >
+					<div>
+						<h5>Tajamar</h5>
+					</div>
+					<ul>
+						<li>
+							<button className="sidePanelButton">Inicio</button>
+						</li>
+						<li>
+							<button className="sidePanelButton">Horarios</button>
+						</li>
+					</ul>
+				</div>
+				<div className="bodyPanel text-center col-10">
+					<div className="title d-flex align-items-start flex-column">
+						<h2>Profesores</h2>
+						<p>Crea y gestiona profesores</p>
+					</div>
+
+					<div className="devider my-4"></div>
+
+					<div className="row">
+						<div className="col-1">Imagen</div>
+						<div className="col-5 d-flex align-items-start flex-column">
+							<h2>Marta Martinez</h2>
+							<p>profesora123@colegio.com</p>
+							<p>+34 666 555 444</p>
+						</div>
+					</div>
+
+					<div className="devider my-4"></div>
+
+					<div className="buttonContainer col-12 border border-primary">
+						<div className="buttonContainer">
+							<button className="btn btn-light">Semanal</button>
+							<button className="btn btn-light">Anual</button>
+						</div>
+					</div>
+					<div className="statsContainer col-12">
+						<div className="stats">
+							<p>Horas totales</p>
+							<h1>18 horas</h1>
+						</div>
+						<div className="stats">
+							<p>Horas lectivas</p>
+							<h1>18 horas</h1>
+
+						</div>
+						<div className="stats">
+							<p>Horas complementarias</p>
+							<h1>0 horas</h1>
+						</div>
+					</div>
+
+					<div className="devider my-4"></div>
+
+					<div className="horasTipoContainer">
+						<div className="horasTipoButton">
+							<button className="btn btn-light">Horas lectivas</button>
+							<button className="btn btn-light">Horas complementarias</button>
+						</div>
+					</div>
+					<div className="d-flex flex-row-reverse col-12">
+						<button className="añadirAsignatura btn">+ Añadir Asignatura</button>
+					</div>
+
+					<div>
+						<Cuadrante />
+					</div>
+
+
+					<div className="d-flex">
+						<button onClick={() => actions.obtenerAsignatura()}> Obtener Asignatura</button>
+						<button onClick={() => actions.obtenerTipo()}> Obtener tipo</button>
+						<button onClick={() => actions.obtenerCurso()}> Obtener curso</button>
+						<button onClick={() => actions.obtenerGrupo()}> Obtener grupo</button>
+						<button onClick={() => actions.obtenerHoras()}> Obtener horas</button>
+						<button onClick={() => actions.obtenerEspacio()}> Obtener espacio</button>
+						<button onClick={() => actions.obtenerCuadrante()}> Obtener cuadrante</button>
+					</div>
+				</div>
+			</div>
+		</>
 	);
 };

@@ -64,6 +64,9 @@ def get_espacio():
 def post_linea():
     request_body_fila = request.get_json()
 
+    if not request_body_fila:
+        return jsonify({'error': 'Missing data'}), 400
+
     nueva_fila = Cuadrante(    
         asignatura=request_body_fila["asignatura"],
         tipo=request_body_fila["tipo"],
@@ -77,4 +80,12 @@ def post_linea():
     db.session.commit()
   
     return jsonify(request_body_fila), 200
+
+@api.route('/cuadrante', methods=['GET'])
+def get_cuadrante():
+
+    todos_cuadrante = Cuadrante.query.all()
+    results= list( map( lambda cuadrante:cuadrante.serialize(), todos_cuadrante ))
+  
+    return jsonify( results), 200
 

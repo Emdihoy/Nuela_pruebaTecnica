@@ -109,11 +109,11 @@ class Cuadrante(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "nombre": self.nombre,
-            "tipo": self.tipo,
-            "curso": self.curso,
-            "grupo": self.grupo,
-            "horas": self.horas,
-            "espacio": self.espacio
+            "asignatura": self.asignatura.nombre,
+            "tipo": self.tipo.tipo_de_asignatura,
+            "curso": self.curso.curso_escolar,
+            "grupo": self.grupo.grupo_escolar,
+            "horas": self.horas.horas_lectivas,
+            "espacio": self.espacio.espacio_escolar
         }
     
