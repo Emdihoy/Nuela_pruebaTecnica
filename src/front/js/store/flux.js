@@ -88,19 +88,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 							setStore({ espacio: data })
 						}
 			)},
-			obtenerCuadrante:() => {
-				const requestOptions = {
-					method: 'GET',
-					headers: {"content-type": "application/json"},						
-				};					
-				fetch(process.env.BACKEND_URL + "api/cuadrante", requestOptions)
-				.then(response => response.json())
-				.then(data => 
-						{
-							console.log(data);
-							setStore({ cuadrante: data })
-						}
-			)},
+			 obtenerCuadrante:() => {
+			 	const requestOptions = {
+			 		method: 'GET',
+			 		headers: {"content-type": "application/json"},						
+			 	};					
+			 	fetch(process.env.BACKEND_URL + "api/cuadrante", requestOptions)
+			 	.then(response => response.json())
+			 	.then(data => 
+			 			{
+			 				setStore({ cuadrante: data })
+			 			}
+			 )},
 		}
 	};
 };

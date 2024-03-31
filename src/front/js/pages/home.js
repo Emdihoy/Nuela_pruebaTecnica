@@ -10,20 +10,41 @@ export const Home = () => {
 	return (
 		<>
 			<div className="main row">
-				<div className="sidePanel col-2" >
+				<div className="sidePanel col-3" >
 					<div>
 						<h5>Tajamar</h5>
 					</div>
-					<ul>
+					<ul className="listItem">
+						<li>
+							<button className="sidePanelButton"></button>
+						</li>
 						<li>
 							<button className="sidePanelButton">Inicio</button>
 						</li>
 						<li>
 							<button className="sidePanelButton">Horarios</button>
 						</li>
+						<li>
+							<button className="sidePanelButton">Profesores</button>
+						</li>
+						<li>
+							<button className="sidePanelButton">Familias</button>
+						</li>
+						<li>
+							<button className="sidePanelButton">Espacios</button>
+						</li>
+						<li>
+							<button className="sidePanelButton">Asignaturas</button>
+						</li>
+						<li>
+							<button className="sidePanelButton">Notificaciones</button>
+						</li>
+						<li>
+							<button className="sidePanelButton">Settings</button>
+						</li>
 					</ul>
 				</div>
-				<div className="bodyPanel text-center col-10">
+				<div className="bodyPanel text-center col-9">
 					<div className="title d-flex align-items-start flex-column">
 						<h2>Profesores</h2>
 						<p>Crea y gestiona profesores</p>

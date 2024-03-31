@@ -1,33 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import "../../styles/cuadrante.css";
 
 
 export const Cuadrante = () => {
     const { store, actions } = useContext(Context);
-
     useEffect(() => {
-        dataTable()
-    }, []);
-
-    const dataTable = async () => {
-        try {
-            actions.obtenerCuadrante()
-            setCuadrante(store.cuadrante)
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    const [cuadrante, setCuadrante] = useState();
-
+        actions.obtenerCuadrante();
+    }, [store.cuadrante]);
     return (
         <>
-            <button onClick={() => setCuadrante(store.cuadrante)}></button>
-            <button onClick={() => console.log(cuadrante)}></button>
             <table className="table">
                 <thead>
                     <tr>
-                        <th scope="col">Nombre</th>
+                        <th scope="col">Asignatura</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Curso</th>
                         <th scope="col">Grupo</th>
@@ -37,33 +23,21 @@ export const Cuadrante = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry the Bird</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                    </tr>
+                    {store.cuadrante.map((item, index) =>
+                        <tr key={item.id}>
+                            <td scope="row">{store.cuadrante?.[index]?.asignatura}</td>
+                            <td>{store.cuadrante?.[index]?.tipo}</td>
+                            <td>{store.cuadrante?.[index]?.curso}</td>
+                            <td>{store.cuadrante?.[index]?.grupo}</td>
+                            <td>{store.cuadrante?.[index]?.horas}</td>
+                            <td>{store.cuadrante?.[index]?.espacio}</td>
+                            <td className="d-flex justify-content-center">
+                                <button className="btn buttonCuadrante">Ver</button>
+                                <button className="btn buttonCuadrante">Editar</button>
+                                <button className="btn" style={{ color: "red" }}>Eliminar</button>
+                            </td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </>

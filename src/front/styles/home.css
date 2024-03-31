@@ -7,18 +7,32 @@
 }
 
 .sidePanelButton{
+    background-color: white;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 2px 8px;
-    gap: 12px;
-    width: 224px;
+    margin-bottom: 7px;
+    border: none;
+    min-width: 80px;
+    width: 100%;
     height: 36px;
     border-radius: 8px;
     flex: none;
     order: 0;
     flex-grow: 1;
+
+}
+.sidePanelButton:hover{
+    background: #eeeaea63;
+}
+.sidePanelButton:active{
+    background: #eeeaeace;
+}
+.listItem{
+    list-style-type: none;
+    padding-left: 0;
 }
 
 .bodyPanel{
