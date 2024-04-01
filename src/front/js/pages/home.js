@@ -119,67 +119,65 @@ export const Home = () => {
 									<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								</div>
 								<div className="modal-body col">
-
 									<div className="dropdown">
 										<div className="form-floating">
-											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+											<select onChange={(e) => setAsignaturas(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Elegir asignatura</option>
 												{store.asignatura.map((item, index) =>
-													<option onClick={()=>setAsignaturas(item.nombre)} key={index}>{item.nombre}</option>
+													<option type="text" key={index}>{item.nombre}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Asignatura</label>
 										</div>
 										<div className="form-floating">
-											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+											<select onChange={(e) => setTipo(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Elegir tipo de asignatura</option>
 												{store.tipo.map((item, index) =>
-													<option onClick={()=>setTipo(item.tipo_de_asignatura)} key={index}>{item.tipo_de_asignatura}</option>
+													<option key={index}>{item.tipo_de_asignatura}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Tipo de asignatura</label>
 										</div>
 										<div className="form-floating">
-											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+											<select onChange={(e) => setCurso(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Elegir Curso</option>
 												{store.curso.map((item, index) =>
-													<option onClick={()=>setCurso(item.curso)} key={index}>{item.curso_escolar}</option>
+													<option key={index}>{item.curso_escolar}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Curso</label>
 										</div>
 										<div className="form-floating">
-											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+											<select onChange={(e) => setGrupo(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Elegir Grupo</option>
 												{store.grupo.map((item, index) =>
-													<option onClick={()=>setGrupo(item.grupo)} key={index}>{item.grupo}</option>
+													<option key={index}>{item.grupo}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Grupo</label>
 										</div>
 										<div className="form-floating">
-											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+											<select onChange={(e) => setHoras(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Cantidad horas</option>
 												{store.hora.map((item, index) =>
-													<option onClick={()=>setHoras(item.hora)} key={index}>{item.hora}</option>
+													<option key={index}>{item.hora}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Horas</label>
 										</div>
 										<div className="form-floating">
-											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+											<select onChange={(e) => setEspacio(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Elegir espacio</option>
 												{store.espacio.map((item, index) =>
-													<option onClick={()=>setEspacio(item.espacio)} key={index}>{item.espacio}</option>
+													<option key={index}>{item.espacio}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Espacio</label>
-										</div>						
+										</div>
 									</div>
 								</div>
 								<div className="modal-footer">
-									<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-									<button onClick={() => console.log(grupo)} type="button" className="btn btn-primary">Save changes</button>
+									<button type="button" className="añadirAsignatura btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir Asignatura</button>
 								</div>
 							</div>
 						</div>
@@ -191,13 +189,19 @@ export const Home = () => {
 
 
 					<div className="d-flex">
-						<button onClick={() => actions.obtenerAsignatura()}> Obtener Asignatura</button>
+						{/* <button onClick={() => actions.obtenerAsignatura()}> Obtener Asignatura</button>
 						<button onClick={() => actions.obtenerTipo()}> Obtener tipo</button>
 						<button onClick={() => actions.obtenerCurso()}> Obtener curso</button>
 						<button onClick={() => actions.obtenerGrupo()}> Obtener grupo</button>
 						<button onClick={() => actions.obtenerHora()}> Obtener horas</button>
 						<button onClick={() => actions.obtenerEspacio()}> Obtener espacio</button>
-						<button onClick={() => actions.obtenerCuadrante()}> Obtener cuadrante</button>
+						<button onClick={() => actions.obtenerCuadrante()}> Obtener cuadrante</button> */}
+						<button onClick={() => console.log(asignaturas)}> prueba asignaturas</button>
+						<button onClick={() => console.log(tipo)}> prueba tipo</button>
+						<button onClick={() => console.log(curso)}> prueba curso</button>
+						<button onClick={() => console.log(grupo)}> prueba grupo</button>
+						<button onClick={() => console.log(horas)}> prueba horas</button>
+						<button onClick={() => console.log(espacio)}> prueba espacio</button>
 					</div>
 				</div>
 			</div>
