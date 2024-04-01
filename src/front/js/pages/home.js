@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Cuadrante } from "../pages/cuadrante";
 import "../../styles/home.css";
@@ -6,6 +6,21 @@ import "../../styles/home.css";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
+	useEffect(() => {
+		actions.obtenerAsignatura();
+		actions.obtenerTipo();
+		actions.obtenerCurso();
+		actions.obtenerGrupo();
+		actions.obtenerHora();
+		actions.obtenerEspacio();
+	}, []);
+
+	const [asignaturas, setAsignaturas] = useState(null);
+	const [tipo, setTipo] = useState(null);
+	const [curso, setCurso] = useState(null);
+	const [grupo, setGrupo] = useState(null);
+	const [horas, setHoras] = useState(null);
+	const [espacio, setEspacio] = useState(null);
 
 	return (
 		<>
@@ -94,7 +109,80 @@ export const Home = () => {
 						</div>
 					</div>
 					<div className="d-flex flex-row-reverse col-12">
-						<button className="añadirAsignatura btn">+ Añadir Asignatura</button>
+						<button type="button" className="añadirAsignatura btn" data-bs-toggle="modal" data-bs-target="#exampleModal">+ Añadir Asignatura</button>
+					</div>
+					<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div className="modal-dialog">
+							<div className="modal-content">
+								<div className="modal-header">
+									<h1 className="modal-title fs-5" id="exampleModalLabel">Añadir asignatura</h1>
+									<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div className="modal-body col">
+
+									<div className="dropdown">
+										<div className="form-floating">
+											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+												<option defaultValue>Elegir asignatura</option>
+												{store.asignatura.map((item, index) =>
+													<option onClick={()=>setAsignaturas(item.nombre)} key={index}>{item.nombre}</option>
+												)}
+											</select>
+											<label htmlFor="floatingSelect">Asignatura</label>
+										</div>
+										<div className="form-floating">
+											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+												<option defaultValue>Elegir tipo de asignatura</option>
+												{store.tipo.map((item, index) =>
+													<option onClick={()=>setTipo(item.tipo_de_asignatura)} key={index}>{item.tipo_de_asignatura}</option>
+												)}
+											</select>
+											<label htmlFor="floatingSelect">Tipo de asignatura</label>
+										</div>
+										<div className="form-floating">
+											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+												<option defaultValue>Elegir Curso</option>
+												{store.curso.map((item, index) =>
+													<option onClick={()=>setCurso(item.curso)} key={index}>{item.curso_escolar}</option>
+												)}
+											</select>
+											<label htmlFor="floatingSelect">Curso</label>
+										</div>
+										<div className="form-floating">
+											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+												<option defaultValue>Elegir Grupo</option>
+												{store.grupo.map((item, index) =>
+													<option onClick={()=>setGrupo(item.grupo)} key={index}>{item.grupo}</option>
+												)}
+											</select>
+											<label htmlFor="floatingSelect">Grupo</label>
+										</div>
+										<div className="form-floating">
+											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+												<option defaultValue>Cantidad horas</option>
+												{store.hora.map((item, index) =>
+													<option onClick={()=>setHoras(item.hora)} key={index}>{item.hora}</option>
+												)}
+											</select>
+											<label htmlFor="floatingSelect">Horas</label>
+										</div>
+										<div className="form-floating">
+											<select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+												<option defaultValue>Elegir espacio</option>
+												{store.espacio.map((item, index) =>
+													<option onClick={()=>setEspacio(item.espacio)} key={index}>{item.espacio}</option>
+												)}
+											</select>
+											<label htmlFor="floatingSelect">Espacio</label>
+										</div>						
+									</div>
+								</div>
+								<div className="modal-footer">
+									<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									<button onClick={() => console.log(grupo)} type="button" className="btn btn-primary">Save changes</button>
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<div>
@@ -107,7 +195,7 @@ export const Home = () => {
 						<button onClick={() => actions.obtenerTipo()}> Obtener tipo</button>
 						<button onClick={() => actions.obtenerCurso()}> Obtener curso</button>
 						<button onClick={() => actions.obtenerGrupo()}> Obtener grupo</button>
-						<button onClick={() => actions.obtenerHoras()}> Obtener horas</button>
+						<button onClick={() => actions.obtenerHora()}> Obtener horas</button>
 						<button onClick={() => actions.obtenerEspacio()}> Obtener espacio</button>
 						<button onClick={() => actions.obtenerCuadrante()}> Obtener cuadrante</button>
 					</div>

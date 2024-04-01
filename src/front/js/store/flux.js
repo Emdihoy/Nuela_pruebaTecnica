@@ -1,11 +1,11 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			asignaturas:[],
+			asignatura:[],
 			tipo:[],
 			curso:[],
 			grupo:[],
-			horas:[],
+			hora:[],
 			espacio:[],
 			cuadrante:[],
 		},
@@ -15,12 +15,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: 'GET',
 					headers: {"content-type": "application/json"},						
 				};					
-				fetch(process.env.BACKEND_URL + "api/asignaturas", requestOptions)
+				fetch(process.env.BACKEND_URL + "api/asignatura", requestOptions)
 				.then(response => response.json())
 				.then(data => 
 						{
 							console.log(data);
-							setStore({ asignaturas: data })
+							setStore({ asignatura: data })
 						}
 			)},
 			obtenerTipo: () => {
@@ -62,17 +62,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 							setStore({ grupo: data })
 						}
 			)},
-			obtenerHoras: () => {
+			obtenerHora: () => {
 				const requestOptions = {
 					method: 'GET',
 					headers: {"content-type": "application/json"},						
 				};					
-				fetch(process.env.BACKEND_URL + "api/horas", requestOptions)
+				fetch(process.env.BACKEND_URL + "api/hora", requestOptions)
 				.then(response => response.json())
 				.then(data => 
 						{
 							console.log(data);
-							setStore({ horas: data })
+							setStore({ hora: data })
 						}
 			)},
 			obtenerEspacio: () => {
@@ -97,9 +97,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			 	.then(response => response.json())
 			 	.then(data => 
 			 			{
+							console.log(data);
 			 				setStore({ cuadrante: data })
 			 			}
-			 )},
+			 )}
 		}
 	};
 };

@@ -7,7 +7,7 @@ export const Cuadrante = () => {
     const { store, actions } = useContext(Context);
     useEffect(() => {
         actions.obtenerCuadrante();
-    }, [store.cuadrante]);
+    }, []);
     return (
         <>
             <table className="table">
@@ -29,7 +29,7 @@ export const Cuadrante = () => {
                             <td>{store.cuadrante?.[index]?.tipo}</td>
                             <td>{store.cuadrante?.[index]?.curso}</td>
                             <td>{store.cuadrante?.[index]?.grupo}</td>
-                            <td>{store.cuadrante?.[index]?.horas}</td>
+                            <td>{store.cuadrante?.[index]?.hora}</td>
                             <td>{store.cuadrante?.[index]?.espacio}</td>
                             <td className="d-flex justify-content-center">
                                 <button className="btn buttonCuadrante">Ver</button>

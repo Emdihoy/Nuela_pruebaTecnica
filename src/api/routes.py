@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Asignaturas,Tipo, Curso, Grupo, Horas, Espacio, Cuadrante
+from api.models import db, Asignatura,Tipo, Curso, Grupo, Hora, Espacio, Cuadrante
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 
@@ -12,11 +12,11 @@ api = Blueprint('api', __name__)
 CORS(api)
 
 
-@api.route('/asignaturas', methods=['GET'])
+@api.route('/asignatura', methods=['GET'])
 def get_user():
 
-    todas_asignaturas = Asignaturas.query.all()
-    results= list( map( lambda asignaturas:asignaturas.serialize(), todas_asignaturas ))
+    todas_asignatura = Asignatura.query.all()
+    results= list( map( lambda asignatura:asignatura.serialize(), todas_asignatura ))
   
     return jsonify( results), 200
 
@@ -44,11 +44,11 @@ def get_grupo():
   
     return jsonify( results), 200
 
-@api.route('/horas', methods=['GET'])
-def get_horas():
+@api.route('/hora', methods=['GET'])
+def get_hora():
 
-    todos_horas = Horas.query.all()
-    results= list( map( lambda horas:horas.serialize(), todos_horas ))
+    todos_hora = Hora.query.all()
+    results= list( map( lambda hora:hora.serialize(), todos_hora ))
   
     return jsonify( results), 200
 
@@ -60,6 +60,8 @@ def get_espacio():
   
     return jsonify( results), 200
 
+
+
 @api.route('/cuadrante', methods=['POST'])
 def post_linea():
     request_body_fila = request.get_json()
@@ -68,18 +70,20 @@ def post_linea():
         return jsonify({'error': 'Missing data'}), 400
 
     nueva_fila = Cuadrante(    
-        asignatura=request_body_fila["asignatura"],
-        tipo=request_body_fila["tipo"],
-        curso=request_body_fila["curso"],
-        grupo=request_body_fila["grupo"],
-        horas=request_body_fila["horas"],
-        espacio=request_body_fila["espacio"]
-            )
+    asignaturaId=request_body_fila["asignaturaId"],
+    tipoId=request_body_fila["tipoId"],
+        cursoId=request_body_fila["cursoId"],
+        grupoId=request_body_fila["grupoId"],
+        horaId=request_body_fila["horaId"],
+        espacioId=request_body_fila["espacioId"]
+        )
 
     db.session.add(nueva_fila)
     db.session.commit()
   
-    return jsonify(request_body_fila), 200
+    return jsonify(nueva_fila.serialize()), 200
+
+
 
 @api.route('/cuadrante', methods=['GET'])
 def get_cuadrante():

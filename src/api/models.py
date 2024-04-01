@@ -3,10 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class Profesor(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(120), unique=False, nullable=False)
-    correo = db.Column(db.String(120), unique=False, nullable=False)
-    numero = db.Column(db.Integer, unique=True, nullable=False)
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    nombre = db.Column(db.String(120), nullable=True)
+    correo = db.Column(db.String(120), unique=True, nullable=True)
+    numero = db.Column(db.Integer, unique=True, nullable=True)
 
     def __repr__(self):
         return f'{self.nombre}'
@@ -16,9 +16,9 @@ class Profesor(db.Model):
             "id": self.id,
             "Profesor": self.nombre,
         }
-class Asignaturas(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(120), unique=False, nullable=False)
+class Asignatura(db.Model):
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    nombre = db.Column(db.String(120), nullable=True)
     asignatura_relation = db.relationship('Cuadrante', backref=db.backref('asignatura', lazy=True))
 
     def __repr__(self):
@@ -30,8 +30,8 @@ class Asignaturas(db.Model):
             "nombre": self.nombre,
         }
 class Tipo(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    tipo_de_asignatura = db.Column(db.String(120), unique=False, nullable=False)
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    tipo_de_asignatura = db.Column(db.String(120), nullable=True)
     tipo_relation = db.relationship('Cuadrante', backref=db.backref('tipo', lazy=True))
 
     def __repr__(self):
@@ -43,8 +43,8 @@ class Tipo(db.Model):
             "tipo_de_asignatura": self.tipo_de_asignatura
         }
 class Curso(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    curso_escolar = db.Column(db.String(120), unique=False, nullable=False)
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    curso_escolar = db.Column(db.String(120), nullable=True)
     curso_relation = db.relationship('Cuadrante', backref=db.backref('curso', lazy=True))
 
     def __repr__(self):
@@ -56,8 +56,8 @@ class Curso(db.Model):
             "curso_escolar": self.curso_escolar
         }
 class Grupo(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    grupo_escolar = db.Column(db.String(120), unique=False, nullable=False)
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    grupo_escolar = db.Column(db.String(120), nullable=True)
     grupo_relation = db.relationship('Cuadrante', backref=db.backref('grupo', lazy=True))
 
     def __repr__(self):
@@ -68,22 +68,22 @@ class Grupo(db.Model):
             "id": self.id,
             "grupo": self.grupo_escolar
         }
-class Horas(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    horas_lectivas = db.Column(db.String(120), unique=False, nullable=False)
-    horas_relation = db.relationship('Cuadrante', backref=db.backref('horas', lazy=True))
+class Hora(db.Model):
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    hora_lectivas = db.Column(db.String(120), nullable=True)
+    hora_relation = db.relationship('Cuadrante', backref=db.backref('hora', lazy=True))
 
     def __repr__(self):
-        return f'{self.horas_lectivas}'
+        return f'{self.hora_lectivas}'
 
     def serialize(self):
         return {
             "id": self.id,
-            "horas": self.horas_lectivas
+            "hora": self.hora_lectivas
         }
 class Espacio(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    espacio_escolar = db.Column(db.String(120), unique=False, nullable=False)
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    espacio_escolar = db.Column(db.String(120), nullable=True)
     espacio_relation = db.relationship('Cuadrante', backref=db.backref('espacio', lazy=True))
 
     def __repr__(self):
@@ -96,12 +96,12 @@ class Espacio(db.Model):
         }
 class Cuadrante(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    Asignatura = db.Column(db.Integer, db.ForeignKey('asignaturas.id'), nullable=False)
-    Tipo = db.Column(db.Integer, db.ForeignKey('tipo.id'), nullable=False)
-    Curso = db.Column(db.Integer, db.ForeignKey('curso.id'), nullable=False)
-    Grupo = db.Column(db.Integer, db.ForeignKey('grupo.id'), nullable=False)
-    Horas = db.Column(db.Integer, db.ForeignKey('horas.id'), nullable=False)
-    Espacio = db.Column(db.Integer, db.ForeignKey('espacio.id'), nullable=False)
+    asignaturaId = db.Column(db.Integer, db.ForeignKey('asignatura.id'), nullable=False)
+    tipoId = db.Column(db.Integer, db.ForeignKey('tipo.id'), nullable=False)
+    cursoId = db.Column(db.Integer, db.ForeignKey('curso.id'), nullable=False)
+    grupoId = db.Column(db.Integer, db.ForeignKey('grupo.id'), nullable=False)
+    horaId = db.Column(db.Integer, db.ForeignKey('hora.id'), nullable=False)
+    espacioId = db.Column(db.Integer, db.ForeignKey('espacio.id'), nullable=False)
 
     def __repr__(self):
         return f'{id}'
@@ -113,7 +113,7 @@ class Cuadrante(db.Model):
             "tipo": self.tipo.tipo_de_asignatura,
             "curso": self.curso.curso_escolar,
             "grupo": self.grupo.grupo_escolar,
-            "horas": self.horas.horas_lectivas,
+            "hora": self.hora.hora_lectivas,
             "espacio": self.espacio.espacio_escolar
         }
     
