@@ -54,21 +54,21 @@ def get_hora():
 
 @api.route('/espacio', methods=['GET'])
 def get_espacio():
-
     todos_espacios = Espacio.query.all()
     results= list( map( lambda espacio:espacio.serialize(), todos_espacios ))
-  
     return jsonify( results), 200
 
-
+@api.route('/cuadrante', methods=['GET'])
+def get_cuadrante():
+    todos_cuadrante = Cuadrante.query.all()
+    results= list( map( lambda cuadrante:cuadrante.serialize(), todos_cuadrante ))
+    return jsonify( results), 200
 
 @api.route('/cuadrante', methods=['POST'])
 def post_linea():
     request_body_fila = request.get_json()
-
     if not request_body_fila:
         return jsonify({'error': 'Missing data'}), 400
-
     nueva_fila = Cuadrante(    
     asignaturaId=request_body_fila["asignaturaId"],
     tipoId=request_body_fila["tipoId"],
@@ -77,19 +77,9 @@ def post_linea():
         horaId=request_body_fila["horaId"],
         espacioId=request_body_fila["espacioId"]
         )
-
     db.session.add(nueva_fila)
     db.session.commit()
-  
     return jsonify(nueva_fila.serialize()), 200
 
 
-
-@api.route('/cuadrante', methods=['GET'])
-def get_cuadrante():
-
-    todos_cuadrante = Cuadrante.query.all()
-    results= list( map( lambda cuadrante:cuadrante.serialize(), todos_cuadrante ))
-  
-    return jsonify( results), 200
 

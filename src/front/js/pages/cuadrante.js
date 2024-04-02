@@ -5,9 +5,11 @@ import "../../styles/cuadrante.css";
 
 export const Cuadrante = () => {
     const { store, actions } = useContext(Context);
+
     useEffect(() => {
         actions.obtenerCuadrante();
-    }, []);
+    }, [store.cuadrante]);
+
     return (
         <>
             <table className="table">

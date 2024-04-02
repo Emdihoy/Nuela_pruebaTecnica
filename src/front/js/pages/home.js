@@ -15,7 +15,7 @@ export const Home = () => {
 		actions.obtenerEspacio();
 	}, []);
 
-	const [asignaturas, setAsignaturas] = useState(null);
+	const [asignatura, setAsignatura] = useState(null);
 	const [tipo, setTipo] = useState(null);
 	const [curso, setCurso] = useState(null);
 	const [grupo, setGrupo] = useState(null);
@@ -121,10 +121,10 @@ export const Home = () => {
 								<div className="modal-body col">
 									<div className="dropdown">
 										<div className="form-floating">
-											<select onChange={(e) => setAsignaturas(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
+											<select onChange={(e) => setAsignatura(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Elegir asignatura</option>
 												{store.asignatura.map((item, index) =>
-													<option type="text" key={index}>{item.nombre}</option>
+													<option key={index} value={item.id}>{item.nombre}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Asignatura</label>
@@ -133,7 +133,7 @@ export const Home = () => {
 											<select onChange={(e) => setTipo(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Elegir tipo de asignatura</option>
 												{store.tipo.map((item, index) =>
-													<option key={index}>{item.tipo_de_asignatura}</option>
+													<option key={index} value={item.id}>{item.tipo_de_asignatura}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Tipo de asignatura</label>
@@ -142,7 +142,7 @@ export const Home = () => {
 											<select onChange={(e) => setCurso(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Elegir Curso</option>
 												{store.curso.map((item, index) =>
-													<option key={index}>{item.curso_escolar}</option>
+													<option key={index} value={item.id}>{item.curso_escolar}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Curso</label>
@@ -151,7 +151,7 @@ export const Home = () => {
 											<select onChange={(e) => setGrupo(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Elegir Grupo</option>
 												{store.grupo.map((item, index) =>
-													<option key={index}>{item.grupo}</option>
+													<option key={index} value={item.id}>{item.grupo}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Grupo</label>
@@ -160,7 +160,7 @@ export const Home = () => {
 											<select onChange={(e) => setHoras(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Cantidad horas</option>
 												{store.hora.map((item, index) =>
-													<option key={index}>{item.hora}</option>
+													<option key={index} value={item.id}>{item.hora}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Horas</label>
@@ -169,7 +169,7 @@ export const Home = () => {
 											<select onChange={(e) => setEspacio(e.target.value)} className="form-select" id="floatingSelect" aria-label="Floating label select example">
 												<option defaultValue>Elegir espacio</option>
 												{store.espacio.map((item, index) =>
-													<option key={index}>{item.espacio}</option>
+													<option key={index} value={item.id}>{item.espacio}</option>
 												)}
 											</select>
 											<label htmlFor="floatingSelect">Espacio</label>
@@ -177,7 +177,7 @@ export const Home = () => {
 									</div>
 								</div>
 								<div className="modal-footer">
-									<button type="button" className="añadirAsignatura btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir Asignatura</button>
+									<button onClick={()=> actions.agregarCuadrante(asignatura, tipo, curso, grupo, horas, espacio)} type="button" className="añadirAsignatura btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir Asignatura</button>
 								</div>
 							</div>
 						</div>
@@ -196,12 +196,12 @@ export const Home = () => {
 						<button onClick={() => actions.obtenerHora()}> Obtener horas</button>
 						<button onClick={() => actions.obtenerEspacio()}> Obtener espacio</button>
 						<button onClick={() => actions.obtenerCuadrante()}> Obtener cuadrante</button> */}
-						<button onClick={() => console.log(asignaturas)}> prueba asignaturas</button>
-						<button onClick={() => console.log(tipo)}> prueba tipo</button>
-						<button onClick={() => console.log(curso)}> prueba curso</button>
-						<button onClick={() => console.log(grupo)}> prueba grupo</button>
-						<button onClick={() => console.log(horas)}> prueba horas</button>
-						<button onClick={() => console.log(espacio)}> prueba espacio</button>
+						<button onClick={() => console.log("asignaturaId: " + asignatura)}> prueba asignaturas</button>
+						<button onClick={() => console.log("tipoId: " + tipo)}> prueba tipo</button>
+						<button onClick={() => console.log("cursoId: " + curso)}> prueba curso</button>
+						<button onClick={() => console.log("grupoId: " + grupo)}> prueba grupo</button>
+						<button onClick={() => console.log("horasId: " + horas)}> prueba horas</button>
+						<button onClick={() => console.log("espacioId: " + espacio)}> prueba espacio</button>
 					</div>
 				</div>
 			</div>
