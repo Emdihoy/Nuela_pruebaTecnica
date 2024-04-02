@@ -81,5 +81,16 @@ def post_linea():
     db.session.commit()
     return jsonify(nueva_fila.serialize()), 200
 
+@api.route('/cuadrante/<int:cuadrante_id>', methods=['DELETE'])
+def delete_cuadrante(cuadrante_id):
+    fila = Cuadrante.query.get(cuadrante_id)
+
+    if not fila:
+        return jsonify({'message': 'fila no encontrada'}), 404
+
+    db.session.delete(fila)
+    db.session.commit()
+
+    return jsonify({'Mensaje': f'Fila eliminada exitosamente'}), 200
 
 

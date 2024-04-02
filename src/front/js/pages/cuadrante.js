@@ -36,7 +36,7 @@ export const Cuadrante = () => {
                             <td className="d-flex justify-content-center">
                                 <button className="btn buttonCuadrante">Ver</button>
                                 <button className="btn buttonCuadrante">Editar</button>
-                                <button className="btn" style={{ color: "red" }}>Eliminar</button>
+                                <button onClick={() => actions.eliminarCuadrante(item.id)} className="btn" style={{ color: "red" }}>Eliminar</button>
                             </td>
                         </tr>
                     )}

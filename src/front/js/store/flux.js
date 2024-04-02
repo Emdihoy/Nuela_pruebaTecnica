@@ -1,123 +1,122 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			asignatura:[],
-			tipo:[],
-			curso:[],
-			grupo:[],
-			hora:[],
-			espacio:[],
-			cuadrante:[],
+			asignatura: [],
+			tipo: [],
+			curso: [],
+			grupo: [],
+			hora: [],
+			espacio: [],
+			cuadrante: [],
 		},
 		actions: {
 			obtenerAsignatura: () => {
 				const requestOptions = {
 					method: 'GET',
-					headers: {"content-type": "application/json"},						
-				};					
+					headers: { "content-type": "application/json" },
+				};
 				fetch(process.env.BACKEND_URL + "api/asignatura", requestOptions)
-				.then(response => response.json())
-				.then(data => 
-						{
-							console.log(data);
-							setStore({ asignatura: data })
-						}
-			)},
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+						setStore({ asignatura: data })
+					}
+					)
+			},
 			obtenerTipo: () => {
 				const requestOptions = {
 					method: 'GET',
-					headers: {"content-type": "application/json"},						
-				};					
+					headers: { "content-type": "application/json" },
+				};
 				fetch(process.env.BACKEND_URL + "api/tipo", requestOptions)
-				.then(response => response.json())
-				.then(data => 
-						{
-							console.log(data);
-							setStore({ tipo: data })
-						}
-			)},
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+						setStore({ tipo: data })
+					}
+					)
+			},
 			obtenerCurso: () => {
 				const requestOptions = {
 					method: 'GET',
-					headers: {"content-type": "application/json"},						
-				};					
+					headers: { "content-type": "application/json" },
+				};
 				fetch(process.env.BACKEND_URL + "api/curso", requestOptions)
-				.then(response => response.json())
-				.then(data => 
-						{
-							console.log(data);
-							setStore({ curso: data })
-						}
-			)},
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+						setStore({ curso: data })
+					}
+					)
+			},
 			obtenerGrupo: () => {
 				const requestOptions = {
 					method: 'GET',
-					headers: {"content-type": "application/json"},						
-				};					
+					headers: { "content-type": "application/json" },
+				};
 				fetch(process.env.BACKEND_URL + "api/grupo", requestOptions)
-				.then(response => response.json())
-				.then(data => 
-						{
-							console.log(data);
-							setStore({ grupo: data })
-						}
-			)},
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+						setStore({ grupo: data })
+					}
+					)
+			},
 			obtenerHora: () => {
 				const requestOptions = {
 					method: 'GET',
-					headers: {"content-type": "application/json"},						
-				};					
+					headers: { "content-type": "application/json" },
+				};
 				fetch(process.env.BACKEND_URL + "api/hora", requestOptions)
-				.then(response => response.json())
-				.then(data => 
-						{
-							console.log(data);
-							setStore({ hora: data })
-						}
-			)},
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+						setStore({ hora: data })
+					}
+					)
+			},
 			obtenerEspacio: () => {
 				const requestOptions = {
 					method: 'GET',
-					headers: {"content-type": "application/json"},						
-				};					
+					headers: { "content-type": "application/json" },
+				};
 				fetch(process.env.BACKEND_URL + "api/espacio", requestOptions)
-				.then(response => response.json())
-				.then(data => 
-						{
-							console.log(data);
-							setStore({ espacio: data })
-						}
-			)},
-			 obtenerCuadrante:() => {
-			 	const requestOptions = {
-			 		method: 'GET',
-			 		headers: {"content-type": "application/json"},						
-			 	};					
-			 	fetch(process.env.BACKEND_URL + "api/cuadrante", requestOptions)
-			 	.then(response => response.json())
-			 	.then(data => 
-			 			{
-							// console.log(data);
-			 				setStore({ cuadrante: data })
-			 			}
-			 )}, 
-			 agregarCuadrante: async (asignaturaId, tipoId, cursoId, grupoId, horasId, espacioId) => {
-				console.log("Datos a enviar:", { "asignaturaId": asignaturaId, "tipoId": tipoId, "cursoId": cursoId, "grupoId": grupoId, "horasId": horasId, "espacioId": espacioId});
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+						setStore({ espacio: data })
+					}
+					)
+			},
+			obtenerCuadrante: () => {
+				const requestOptions = {
+					method: 'GET',
+					headers: { "content-type": "application/json" },
+				};
+				fetch(process.env.BACKEND_URL + "api/cuadrante", requestOptions)
+					.then(response => response.json())
+					.then(data => {
+						// console.log(data);
+						setStore({ cuadrante: data })
+					}
+					)
+			},
+			agregarCuadrante: async (asignaturaId, tipoId, cursoId, grupoId, horasId, espacioId) => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + "api/cuadrante", {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({ 
-							"asignaturaId": asignaturaId, 
-							"tipoId": tipoId, 
-							"cursoId": cursoId, 
-							"grupoId": grupoId, 
-							"horaId": horasId, 
+						body: JSON.stringify({
+							"asignaturaId": asignaturaId,
+							"tipoId": tipoId,
+							"cursoId": cursoId,
+							"grupoId": grupoId,
+							"horaId": horasId,
 							"espacioId": espacioId
 						}),
-					});			
+					});
 					if (response.ok) {
 					} else {
 						console.error("Error al añadir fila a cuadrante:", response.status, response.statusText);
@@ -131,7 +130,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert("Error al añadir fila a cuadrante. Intentalo nuevamente.");
 				}
 			},
-		}
+			eliminarCuadrante: (id) => {
+				const requestOptions = {
+					method: 'DELETE',
+					headers: { "content-type": "application/json" },
+				};
+				fetch(process.env.BACKEND_URL + `api/cuadrante/${id}`, requestOptions)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error(`Error al eliminar fila de cuadrante ${id}`);
+						}
+						return response.json()
+					})
+					.then((data) => { console.log(data) })
+			},
+			editarCuadrante: () => {
+				
+			}
+		},
 	};
 };
 
