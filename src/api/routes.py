@@ -65,7 +65,7 @@ def get_cuadrante():
     return jsonify( results), 200
 
 @api.route('/cuadrante', methods=['POST'])
-def post_linea():
+def post_fila():
     request_body_fila = request.get_json()
     if not request_body_fila:
         return jsonify({'error': 'Missing data'}), 400
@@ -93,4 +93,18 @@ def delete_cuadrante(cuadrante_id):
 
     return jsonify({'Mensaje': f'Fila eliminada exitosamente'}), 200
 
+@api.route('/cuadrante/<int:cuadrante_id>', methods=['PUT'])
+def update_cuadrante(cuadrante_id):
+    filaExistente = Cuadrante.query.filter_by(id = cuadrante_id).first()
+    data = request.get_json()
+    filaExistente.asignaturaId = data.get('asignaturaId', filaExistente.asignaturaId)
+    filaExistente.tipoId = data.get('tipoId', filaExistente.tipoId)
+    filaExistente.cursoId = data.get('cursoId', filaExistente.cursoId)
+    filaExistente.grupoId = data.get('grupoId', filaExistente.grupoId)
+    filaExistente.horaId = data.get('horaId', filaExistente.horaId)
+    filaExistente.espacioId = data.get('espacioId', filaExistente.espacioId)
 
+    db.session.commit()
+    db.session.commit()
+    response_body = "Fila modificada"
+    return jsonify(response_body), 200

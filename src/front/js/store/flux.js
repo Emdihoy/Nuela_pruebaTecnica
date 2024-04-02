@@ -96,7 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "api/cuadrante", requestOptions)
 					.then(response => response.json())
 					.then(data => {
-						// console.log(data);
+						console.log(data);
 						setStore({ cuadrante: data })
 					}
 					)
@@ -144,9 +144,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then((data) => { console.log(data) })
 			},
-			editarCuadrante: () => {
-				
-			}
+			editarCuadrante: (id, asignaturaId, tipoId, cursoId, grupoId, horasId, espacioId) => {
+				const editOptions = {
+				method: 'PUT',
+				headers: { 'Content-Type': 'application/json', },
+				body: JSON.stringify({
+					"asignaturaId": asignaturaId,
+					"tipoId": tipoId,
+					"cursoId": cursoId,
+					"grupoId": grupoId,
+					"horaId": horasId,
+					"espacioId": espacioId
+				}),
+			};
+				fetch(process.env.BACKEND_URL + `/api/cuadrante/${id}`,editOptions)
+				.then(response => response.json())
+				.then(data => {
+					console.log(`Comentario editado exitosamente: ${data}`);
+					alert("El comentario se editó correctamente");
+				})
+				.catch(error => {
+					console.error('Error al editar el comentario', error);
+					alert("Error al editar la comentario");
+				});
+			},
+
 		},
 	};
 };
